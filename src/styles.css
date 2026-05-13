@@ -1,0 +1,680 @@
+:root {
+  --green-900: #2f4a1f;
+  --green-700: #4a7a2a;
+  --green-500: #7bb661;
+  --green-100: #e8f3df;
+  --cream: #fbf8f1;
+  --ink: #2a2a2a;
+  --muted: #5a6557;
+  --max-width: 960px;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.55;
+}
+
+a { color: var(--green-700); }
+a:hover { color: var(--green-900); }
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  width: 100%;
+}
+
+/* Header */
+.site-header {
+  background: #292826;
+  color: white;
+  border-bottom: 4px solid var(--green-900);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex: 1;
+  min-width: 0;
+}
+.brand-logo {
+  display: block;
+  height: 120px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.site-nav {
+  display: flex;
+  gap: 1rem;
+}
+.site-nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-weight: 500;
+}
+.site-nav a:hover { background: rgba(255,255,255,0.12); }
+.site-nav a.active {
+  background: white;
+  color: var(--green-900);
+}
+
+/* Main */
+.site-main {
+  flex: 1;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.hero {
+  background: var(--green-100);
+  border-left: 6px solid var(--green-500);
+  padding: 1.5rem 1.5rem;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  margin: 0 0 0.5rem;
+  color: var(--green-900);
+}
+.hero p { margin: 0; color: var(--muted); }
+
+.hero-banner {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-left: none;
+  min-height: 320px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+  overflow: hidden;
+  color: white;
+}
+.hero-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(47, 74, 31, 0.85) 0%,
+    rgba(47, 74, 31, 0.35) 60%,
+    rgba(47, 74, 31, 0.1) 100%
+  );
+}
+.hero-banner .hero-content {
+  position: relative;
+  padding: 1.75rem;
+  width: 100%;
+}
+.hero-banner h1 { color: white; }
+.hero-banner p { color: rgba(255, 255, 255, 0.92); }
+
+/* Full-bleed parallax hero (Home & About) */
+.home-page .hero-banner,
+.about-page .hero-banner {
+  /* break out of the .container max-width and padding */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: -2rem; /* cancel .site-main top padding */
+  margin-bottom: 3rem;
+  border-radius: 0;
+  min-height: calc(100vh - 160px);
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.home-page .hero-banner .hero-content,
+.about-page .hero-banner .hero-content {
+  max-width: 760px;
+  padding: 2rem 1.5rem;
+}
+.home-page .hero-banner h1,
+.about-page .hero-banner h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  margin-bottom: 0.75rem;
+  color: #eef2e3;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+.home-page .hero-banner p,
+.about-page .hero-banner p {
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  color: #eef2e3;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* About: shorter hero so the long content shows sooner */
+.about-page .hero-banner {
+  min-height: 60vh;
+}
+
+/* Cards (Home & About) */
+.home-page .home-intro,
+.home-page .home-grid,
+.about-page .about-card {
+  background: #eef2e3;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 1;
+}
+
+/* About: rows of side-by-side cards */
+.about-page .about-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.about-page .about-row > .about-card {
+  margin: 0; /* override the > * + * spacing inside the row */
+  height: 100%;
+}
+
+/* About: card containing text + a figure side by side */
+.about-page .about-card--with-figure {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+.about-page .about-card--with-figure .prose-figure {
+  margin: 0;
+}
+.about-page .about-card--with-figure .prose-figure img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+.about-page .about-card--three {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.about-page .about-card-figures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.about-page .about-card-figures .prose-figure { margin: 0; }
+
+/* Intro card: image left, text right */
+.about-page .about-card--intro {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+.about-page .about-card--intro .prose-figure { margin: 0; }
+.about-page .about-card--intro .prose-figure img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+}
+
+/* Tighter top margins inside cards */
+.about-page .about-card > h2:first-child,
+.about-page .about-card-text > h2:first-child { margin-top: 0; }
+.about-page .about-card > p:last-child,
+.about-page .about-card > ul:last-child { margin-bottom: 0; }
+
+/* Centre headings on About cards */
+.about-page .about-card h2,
+.about-page .about-card-text h2 {
+  text-align: center;
+}
+
+/* About card variants for visual variety as you scroll */
+.about-page .about-card {
+  overflow: hidden; /* clip the accent stripe */
+}
+.about-page .about-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--green-500), var(--green-700));
+}
+.about-page .about-card--cream {
+  background: #fbf6e6;
+}
+.about-page .about-card--dark {
+  background: #2f4a1f;
+  color: #eef2e3;
+}
+.about-page .about-card--dark a {
+  color: #d6e6b8;
+  text-decoration: underline;
+}
+.about-page .about-card--dark a:hover {
+  color: #fff;
+}
+
+/* Unique accent band per card */
+.about-page .about-card--accent-roots::before {
+  background: linear-gradient(90deg, #7bb661, #4a7a2a); /* fresh green */
+}
+.about-page .about-card--accent-history::before {
+  background: linear-gradient(90deg, #ff8a65, #e64a19); /* coral */
+}
+.about-page .about-card--accent-do::before {
+  background: linear-gradient(90deg, #a8d68a, #6aa84f); /* fresh leaf */
+}
+.about-page .about-card--accent-involved::before {
+  background: linear-gradient(90deg, #c97a4a, #8a3e1f); /* terracotta */
+}
+.about-page .about-card--accent-when::before {
+  background: linear-gradient(90deg, #e8f3df, #7bb661); /* soft garden green */
+}
+
+/* Mid-page parallax banner break */
+.about-page .about-break {
+  position: relative;
+  width: 100vw !important;
+  max-width: none !important;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  height: 420px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.about-page .about-break-wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 80px;
+  display: block;
+}
+.about-page .about-break-wave--top { top: -1px; }
+.about-page .about-break-wave--bottom { bottom: -1px; }
+
+@media (max-width: 720px) {
+  .about-page .about-row,
+  .about-page .about-card--with-figure,
+  .about-page .about-card--intro {
+    grid-template-columns: 1fr;
+  }
+  .about-page .about-break {
+    height: 260px;
+  }
+  .about-page .about-break-wave { height: 50px; }
+}
+
+/* Full-bleed green gradient backdrop behind the cards (Home & About) */
+.home-page .home-sections,
+.about-page .about-sections {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: -3rem; /* pull up to meet the wave */
+  margin-bottom: -3rem; /* extend down past .site-main padding */
+  padding: 1rem 1.25rem 4rem;
+  background: linear-gradient(
+    90deg,
+    var(--green-700) 0%,
+    var(--green-900) 100%
+  );
+}
+.home-page .home-sections > *,
+.about-page .about-sections > * {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+.home-page .home-sections > * + *,
+.about-page .about-sections > * + * {
+  margin-top: 2rem;
+}
+
+/* Curved wave at the bottom of the hero, fills with the dark colour */
+.hero-banner .hero-wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px; /* avoid sub-pixel gap */
+  width: 100%;
+  height: 90px;
+  display: block;
+  z-index: 2;
+}
+
+/* On touch devices, background-attachment: fixed is buggy/expensive —
+   fall back to scroll. */
+@media (hover: none), (max-width: 720px) {
+  .home-page .hero-banner,
+  .about-page .hero-banner {
+    background-attachment: scroll;
+    min-height: 70vh;
+  }
+  .hero-banner .hero-wave {
+    height: 60px;
+  }
+}
+
+/* Image gallery */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 0 0 2.5rem;
+}
+.image-gallery figure {
+  margin: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+.image-gallery img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.image-gallery figcaption {
+  padding: 0.6rem 0.85rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Home intro paragraph */
+.home-intro {
+  margin: 0 0 2rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.home-intro p { margin: 0; }
+
+/* Home grid: harvest photo next to Facebook feed */
+.home-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(0, 1.4fr);
+  gap: 1.5rem;
+  align-items: start;
+  margin: 0 0 2.5rem;
+}
+.home-grid-figure {
+  margin: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 1rem;
+}
+.home-grid-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: cover;
+}
+.home-grid-figure figcaption {
+  padding: 0.6rem 0.85rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.home-grid .feed-section { margin: 0; }
+.home-grid .feed-section h2 { margin-top: 0; }
+
+@media (max-width: 720px) {
+  .home-grid {
+    grid-template-columns: 1fr;
+  }
+  .home-grid-figure { position: static; }
+}
+
+/* Prose figures (About page) */
+.prose-figure {
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+.prose-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+  object-fit: cover;
+}
+.prose-figure figcaption {
+  padding: 0.6rem 0.9rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.feed-section h2 {
+  color: var(--green-900);
+  margin-top: 0;
+}
+
+.fb-feed-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+/* Styled card around the Facebook page plugin (we can't restyle inside the
+   iframe, but we can make it feel at home on the page) */
+.fb-feed-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  margin: 0.5rem 0 1rem;
+}
+.fb-feed-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, var(--green-700), var(--green-900));
+  color: white;
+}
+.fb-feed-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.fb-feed-card-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.fb-feed-card-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  transition: background 0.15s ease;
+}
+.fb-feed-card-link:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+.fb-feed-card-body {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  background: var(--cream);
+}
+.fb-feed-card-body .fb-page,
+.fb-feed-card-body iframe {
+  max-width: 100% !important;
+}
+
+/* Post list rendered from build-time JSON */
+.fb-post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 720px;
+  overflow-y: auto;
+}
+.fb-post {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.fb-post:last-child { border-bottom: none; }
+.fb-post-image {
+  display: block;
+  width: 110px;
+  height: 110px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--green-100);
+}
+.fb-post-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.fb-post:has(.fb-post-image) {
+  grid-template-columns: 110px 1fr;
+}
+.fb-post:not(:has(.fb-post-image)) {
+  grid-template-columns: 1fr;
+}
+.fb-post-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+.fb-post-date {
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.fb-post-message {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--ink);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.fb-post-link {
+  align-self: flex-start;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--green-700);
+  text-decoration: none;
+  margin-top: 0.15rem;
+}
+.fb-post-link:hover { color: var(--green-900); text-decoration: underline; }
+
+.fb-feed-empty {
+  padding: 1.25rem 1rem;
+  text-align: center;
+  color: var(--muted);
+}
+.fb-feed-empty p { margin: 0; }
+
+@media (max-width: 480px) {
+  .fb-post {
+    grid-template-columns: 80px 1fr;
+  }
+  .fb-post-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.feed-fallback,
+.feed-error {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 1rem;
+}
+.feed-error {
+  background: var(--green-100);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+/* Prose (About page) */
+.prose h1 { color: var(--green-900); margin-top: 0; }
+.prose h2 {
+  color: var(--green-700);
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.prose ul { padding-left: 1.25rem; }
+.prose li { margin-bottom: 0.35rem; }
+
+/* Footer */
+.site-footer {
+  background: #292826;
+  border-top: 4px solid var(--green-900);
+  color: rgba(255,255,255,0.85);
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.site-footer p { margin: 0; }
+
+@media (max-width: 480px) {
+  .header-inner { flex-direction: column; align-items: flex-start; }
+  .site-nav { width: 100%; }
+}
