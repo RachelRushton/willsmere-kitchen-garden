@@ -1,13 +1,9 @@
 name: Deploy to GitHub Pages
 
 on:
-  # push:
-  #   branches: [main]
+  push:
+    branches: [main]
   workflow_dispatch:
-  # schedule:
-  #   # Re-fetch & redeploy daily at 18:00 UTC (~ 4–5am Melbourne) so the
-  #   # Facebook feed stays fresh even without code changes.
-  #   - cron: '0 18 * * *'
 
 permissions:
   contents: read
@@ -33,9 +29,6 @@ jobs:
         run: npm ci
 
       - name: Build
-        env:
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
         run: npm run build
 
       - name: Add SPA 404 fallback

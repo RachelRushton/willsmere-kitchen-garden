@@ -5,8 +5,6 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "fetch:fb": "node scripts/fetch-facebook-posts.mjs",
-    "prebuild": "npm run fetch:fb",
     "build": "vite build",
     "preview": "vite preview"
   },

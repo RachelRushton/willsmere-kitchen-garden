@@ -1,6 +1,7 @@
-import FacebookFeed from '../components/FacebookFeed.jsx';
 import banner from '../images/city-sunset.jpeg';
 import veggieBucket from '../images/veggie-bucket.jpg';
+
+const FACEBOOK_URL = 'https://www.facebook.com/groups/willsmerekitchengarden/';
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
           <h1>Welcome to our community garden</h1>
           <p>
             Willsmere Kitchen Garden is a place to grow food, share knowledge and meet
-            your neighbours. Follow our latest news straight from Facebook below.
+            your neighbours. Join the conversation on Facebook to keep up with the latest news.
           </p>
         </div>
         <svg
@@ -46,24 +47,31 @@ export default function Home() {
           </p>
         </section>
 
-        <section className="home-grid" aria-label="Garden highlights and latest updates">
+        <section className="home-grid" aria-label="Garden highlights and community">
           <figure className="home-grid-figure">
             <img src={veggieBucket} alt="Freshly harvested vegetables in a bucket" />
           </figure>
 
-          <div className="feed-section" aria-labelledby="feed-heading">
-            <h2 id="feed-heading">Latest from Facebook</h2>
-            <FacebookFeed />
-            {/* <p className="feed-fallback">
-              Can't see the feed? View our page directly on{' '}
+          <div className="feed-section" aria-labelledby="connect-heading">
+            <h2 id="connect-heading">Connect with us on Facebook</h2>
+            <div className="fb-cta">
+              <p>
+                Our day-to-day news, working bee announcements and harvest updates all
+                happen in our private Facebook group. Request to join to chat with other
+                members and stay in the loop.
+              </p>
               <a
-                href="https://www.facebook.com/WillsmereKitchenGarden"
+                className="fb-cta-button"
+                href={FACEBOOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Facebook
-              </a>.
-            </p> */}
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                  <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z" />
+                </svg>
+                Visit our Facebook group
+              </a>
+            </div>
           </div>
         </section>
       </div>
