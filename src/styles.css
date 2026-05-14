@@ -503,7 +503,7 @@ a:hover { color: var(--green-900); }
   line-height: 1.55;
 }
 .fb-cta-button {
-  align-self: flex-start;
+  align-self: center;
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
