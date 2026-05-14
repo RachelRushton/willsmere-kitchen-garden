@@ -13,6 +13,8 @@
 
 html, body, #root { height: 100%; }
 
+html, body { overflow-x: hidden; max-width: 100%; }
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -29,6 +31,7 @@ a:hover { color: var(--green-900); }
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 .container {
@@ -88,7 +91,9 @@ a:hover { color: var(--green-900); }
 /* Main */
 .site-main {
   flex: 1;
-  padding: 2rem 1.25rem 3rem;
+  padding: 2rem 0 3rem;
+  width: 100%;
+  min-width: 0;
 }
 
 .hero {
@@ -139,13 +144,8 @@ a:hover { color: var(--green-900); }
 /* Full-bleed parallax hero (Home & About) */
 .home-page .hero-banner,
 .about-page .hero-banner {
-  /* break out of the .container max-width and padding */
-  width: 100vw;
+  width: 100%;
   position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
   margin-top: -2rem; /* cancel .site-main top padding */
   margin-bottom: 3rem;
   border-radius: 0;
@@ -305,12 +305,9 @@ a:hover { color: var(--green-900); }
 /* Mid-page parallax banner break */
 .about-page .about-break {
   position: relative;
-  width: 100vw !important;
-  max-width: none !important;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw !important;
-  margin-right: -50vw !important;
+  width: auto;
+  margin-left: -1.25rem;
+  margin-right: -1.25rem;
   height: 420px;
   background-size: cover;
   background-position: center;
@@ -343,11 +340,7 @@ a:hover { color: var(--green-900); }
 .home-page .home-sections,
 .about-page .about-sections {
   position: relative;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  width: 100%;
   margin-top: -3rem; /* pull up to meet the wave */
   margin-bottom: -3rem; /* extend down past .site-main padding */
   padding: 1rem 1.25rem 4rem;

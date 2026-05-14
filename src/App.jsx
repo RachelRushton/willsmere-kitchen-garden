@@ -16,7 +16,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="container site-main">
+      <main className="site-main">
         <Outlet />
       </main>
 
