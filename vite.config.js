@@ -6,5 +6,5 @@ import react from '@vitejs/plugin-react';
 // (https://<user>.github.io/), change this to '/'.
 export default defineConfig({
   plugins: [react()],
-  base: '/willsmere-kitchen-garden/',
+  base: '/',
 });
